@@ -1,0 +1,20 @@
+:root{
+    --emphasis-clr: rgb(1, 0, 34);
+}
+
+.login-btn{
+    padding:1rem;
+    background: #03AEEE;
+    color:white;
+    border:1px transparent;
+    border-radius:5px;
+    width:100%;
+    cursor:pointer;
+    font-size:18px;
+    transition: all 0.3s ease-in-out;
+    outline:1.5px transparent;
+}
+.login-btn:hover{
+    outline: 1.5px solid var(--emphasis-clr);
+    color: var(--emphasis-clr)
+}

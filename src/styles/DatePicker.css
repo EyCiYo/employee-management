@@ -1,0 +1,42 @@
+/* input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-calendar-picker-indicator{
+
+} */
+
+.input{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+    font-weight: 500;
+}
+.date-wrapper {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    font-size: 18px;
+}
+.hidden-date {
+    padding: 0.5rem;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 18px;
+    border: 1px solid #d6dbdf;
+    position: absolute;
+    opacity: 0;
+    /* pointer-events: none; */
+    width: 100%;
+}
+
+.placeholder {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #888;
+    cursor: pointer;
+}
+
