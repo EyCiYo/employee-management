@@ -3,10 +3,11 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import "../styles/CreateEmployee.css";
 
-const CreateEmployee = () => {
+const CreateEmployee = (prop) => {
+    const { handleLogOut } = prop;
     return (
         <>
-            <Navbar />
+            <Navbar handleLogOut={handleLogOut} />
             <main>
                 <Sidebar />
                 <CreateEmployeeComponent />

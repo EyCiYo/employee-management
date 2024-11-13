@@ -6,6 +6,7 @@ import useLoginValidation from "../hooks/useLoginValidation";
 const Login = (prop) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [btnAction, setBtnAction] = useState("Log In");
 
     const { isLogin } = prop;
 
@@ -22,14 +23,32 @@ const Login = (prop) => {
         password,
     });
 
-    console.log("In Login:" + username);
-    console.log("In Login:" + password);
+    // console.log("In Login:" + username);
+    // console.log("In Login:" + password);
 
     const onLogin = () => {
-        if (username === "alexander" && password === "password") {
-            isLogin(true);
+        const usersObj = JSON.parse(localStorage.getItem("usersObj")) || {};
+        if (usersObj.length !== 0) {
+            if (usersObj[username] === password) {
+                alert("Login Success");
+                isLogin(true);
+            }
         } else {
             isLogin(false);
+        }
+    };
+
+    const onSignUp = () => {
+        if (errorUsername === "" && errorPassword === "") {
+            const usersObj = localStorage.getItem("usersObj")
+                ? JSON.parse(localStorage.getItem("usersObj"))
+                : {};
+            usersObj[username] = password;
+            localStorage.setItem("usersObj", JSON.stringify(usersObj));
+            alert("Sign Up Successfull");
+            setBtnAction("Log In");
+        } else {
+            alert("Validation Failed");
         }
     };
     return (
@@ -87,7 +106,26 @@ const Login = (prop) => {
                     ></InputField>
                     <span style={{ color: "red" }}>{errorPassword}</span>
                 </div>
-                <Button label="Log In" handleClick={onLogin} />
+                {btnAction === "Log In" ? (
+                    <Button label="Log In" handleClick={onLogin} />
+                ) : (
+                    <Button label="Sign Up" handleClick={onSignUp} />
+                )}
+                <p>
+                    No Account?{" "}
+                    <a
+                        onClick={() => {
+                            setBtnAction("Sign Up");
+                        }}
+                        style={{
+                            color: "blue",
+                            cursor: "pointer",
+                        }}
+                    >
+                        Sign Up
+                    </a>{" "}
+                    now
+                </p>
             </div>
         </div>
     );
