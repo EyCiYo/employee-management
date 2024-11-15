@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import formatDate from "../utils/DateFormat";
+
 // import { useEffect, useState } from "react";
 const EmployeeList = () => {
     const [statusFilter, setStatusFilter] = useState("");
@@ -19,35 +21,7 @@ const EmployeeList = () => {
                 setUserData(res);
             });
     }, []);
-    console.log(userData);
 
-    // const listGenerate = (user) => {
-    //     return (
-    //         <ul
-    //             key={user.id}
-    //             style={{
-    //                 display: "flex",
-    //                 gap: "1rem",
-    //                 listStyle: "none",
-    //             }}
-    //         >
-    //             <li>
-    //                 <Link to={`/app/employees/${user.id}`}>{user.id}</Link>
-    //             </li>
-    //             <li>{user.firstName}</li>
-    //             <li>{user.lastName}</li>
-    //             <li>{user.age}</li>
-    //         </ul>
-    //     );
-    // };
-    const formatDate = (isoString) => {
-        const date = new Date(isoString);
-        const day = String(date.getDate()).padStart(2, "0");
-        const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
-        const year = date.getFullYear();
-
-        return `${day}.${month}.${year}`;
-    };
     const renderTableItem = (user) => {
         if (!user.deletedAt) {
             statusBackground.current = "var(--active)";

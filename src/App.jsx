@@ -5,6 +5,7 @@ import HomeLayout from "./layout/HomeLayout.jsx";
 import CreateEmployeeComponent from "./components/CreateEmployeeComponent.jsx";
 import EmployeeList from "./components/EmployeeList.jsx";
 import EmployeeDetails from "./components/EmployeeDetails.jsx";
+import UpdateEmployee from "./components/UpdateEmployee.jsx";
 
 const App = () => {
     const router = createBrowserRouter([
@@ -33,6 +34,15 @@ const App = () => {
                 {
                     path: "create",
                     element: <CreateEmployeeComponent />,
+                },
+                {
+                    path: "update",
+                    children: [
+                        {
+                            path: ":id",
+                            element: <UpdateEmployee />,
+                        },
+                    ],
                 },
             ],
         },
