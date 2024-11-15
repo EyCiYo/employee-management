@@ -1,7 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
-const Navbar = (prop) => {
-    const { handleLogOut } = prop;
+const Navbar = () => {
+    const navigate = useNavigate();
     return (
         <nav
             style={{
@@ -9,27 +10,18 @@ const Navbar = (prop) => {
                 background: "white",
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "end",
                 alignItems: "center",
-                padding: "0 1rem",
+                padding: "0.5rem 1rem",
             }}
         >
-            <img
-                src="src/assets/kv logo.png"
-                alt="logo"
-                height="50px"
-                style={{
-                    margin: "0.5rem",
-                    marginLeft: "2rem",
-                }}
-            />
             <Button
                 label="Log Out"
                 style={{
                     width: "100px",
                 }}
                 handleClick={() => {
-                    handleLogOut(false);
+                    navigate("/");
                 }}
             />
         </nav>

@@ -1,0 +1,30 @@
+.sidebar{
+    background: white;
+    flex: 0 0 15%;
+    box-shadow: 0px 3px 6px #00000029;
+}
+
+.sidebar-item{
+    padding: 1rem;
+    margin: 1rem 0 1rem 1rem;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    background: inherit;
+}
+
+.sidebar a{
+    text-decoration: none;
+}
+
+.active{
+    background: #03AEEE;
+    color:white;
+}
+
+.pending{
+    background:white;
+    color: #03AEEE;
+}

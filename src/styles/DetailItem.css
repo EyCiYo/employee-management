@@ -1,0 +1,10 @@
+.detail-item{
+    display: flex;
+    flex-direction: column;
+    gap:0.5rem;
+    font-size: 16px;
+}
+
+.heading{
+    color: #8B8D9D;
+}

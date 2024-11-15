@@ -15,7 +15,13 @@ const DropDown = (prop) => {
                 onChange={(e) => {
                     prop.handleChange(e);
                 }}
+                style={prop.style}
             >
+                {prop.placeholder && (
+                    <option value="" disabled>
+                        {prop.placeholder}
+                    </option>
+                )}
                 {prop.options.map((option) => (
                     <option value={option.value} key={option.value}>
                         {option.label}

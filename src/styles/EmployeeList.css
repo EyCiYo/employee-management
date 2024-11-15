@@ -1,0 +1,128 @@
+:root{
+    --probation:#F5ECB8;
+    --inactive:#FFBFBF;
+    --active:#D3F4BE;
+    --kvblue:#03AEEE;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+/* select{
+    background-color: #EAF9FF;
+    border: none;
+    outline: none;
+    width: 160px;
+    border-radius: 15px;
+    padding: 0.25rem 1rem;
+    appearance: none;
+    text-align: center;
+} */
+.heading-banner{
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.heading-right{
+    display: flex;
+    justify-content: space-around;
+    gap: 4rem;
+}
+.filter{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.create-btn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 58px;
+    background-color: #EAF9FF;
+    gap: 0.5rem;
+    width: 259px;
+    font-size: 18px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.circle{
+    background-color: var(--kvblue);
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    display: flex;
+    color:white;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.list-content{
+    /* padding: 1rem; */
+    border-radius: 10px;
+    width: 100%;
+    /* background: white; */
+    /* box-shadow: 0px 3px 6px #9D9D9D29; */
+}
+.employee-table{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+.table-heading{
+    padding: 0.5rem 1.5rem;
+    height: 3.5rem;
+    background-color: #EAF9FF;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.table-heading div{
+    width: 200px;
+    flex:1;
+}
+.table-row{
+    padding: 0.5rem 1.5rem;
+    height: 3.5rem;
+    background-color: white;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 16px;
+}
+.status{
+    background-color: var(--probation);
+    padding: 0.25rem 1rem;
+    border-radius: 15px;
+    width: 110px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table-row > div{
+    width: 200px;
+    flex:1;
+}
+.action-buttons{
+    display: flex;
+    justify-content: start;
+    gap:3rem;
+}
+

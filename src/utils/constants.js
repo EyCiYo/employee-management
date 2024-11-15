@@ -1,10 +1,10 @@
 export const Roles = [
     {
-        label: "Front End",
+        label: "UI Engineer",
         value: "FE",
     },
     {
-        label: "Back End",
+        label: "Full Stack",
         value: "BE",
     },
     {
@@ -12,8 +12,8 @@ export const Roles = [
         value: "QA",
     },
     {
-        label: "Research",
-        value: "RD",
+        label: "DevOps",
+        value: "DO",
     },
     {
         label: "HR - Executive",
@@ -46,6 +46,10 @@ export const Departments = [
 
 export const Status = [
     {
+        label: "Probation",
+        value: "probation",
+    },
+    {
         label: "Inactive",
         value: "inactive",
     },
@@ -54,3 +58,13 @@ export const Status = [
         value: "active",
     },
 ];
+
+export const TestUser = {
+    employeeName: "Alexander Ouseph",
+    joiningDate: "28.10.2024",
+    experience: "1 Yrs",
+    department: "HR",
+    role: "HR",
+    status: "active",
+    // address: { line1: "Alex House", pincode: "680684" },
+};

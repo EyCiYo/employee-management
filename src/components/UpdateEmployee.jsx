@@ -1,11 +1,11 @@
+import Button from "./Button";
+import InputField from "./InputField";
+import DropDown from "./DropDown";
+import DatePicker from "./DatePicker";
 import { useState } from "react";
-import InputField from "../components/InputField.jsx";
-import DropDown from "../components/DropDown.jsx";
-import Button from "../components/Button.jsx";
-import { Departments, Roles, Status } from "../utils/constants.js";
-import DatePicker from "./DatePicker.jsx";
+import { Departments, Roles, Status } from "../utils/constants";
 
-const CreateEmployeeComponent = () => {
+const UpdateEmployee = () => {
     const initialFormData = {
         employeeName: "",
         joiningDate: "",
@@ -13,28 +13,14 @@ const CreateEmployeeComponent = () => {
         department: "HR",
         role: "HR",
         status: "active",
-        address: { line1: "", pincode: "" },
+        line1: "",
+        pincode: "",
     };
     const [formData, setFormData] = useState(initialFormData);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
-
-        if (name === "line1" || name === "pincode") {
-            setFormData({
-                ...formData,
-                address: {
-                    ...formData.address,
-                    [name]: value,
-                },
-            });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
+        setFormData({ ...formData, [name]: value });
     };
-    console.log(formData);
-
     return (
         <div className="main-container-style-all">
             <div
@@ -46,7 +32,7 @@ const CreateEmployeeComponent = () => {
                     marginBottom: "1.5rem",
                 }}
             >
-                <h2>Create Employee</h2>
+                <h2>Update Employee</h2>
             </div>
             <form
                 style={{
@@ -127,7 +113,7 @@ const CreateEmployeeComponent = () => {
                             label="Address"
                             placeholder="Flat No / House Address"
                             type="text"
-                            value={formData.address.line1}
+                            value={formData.line1}
                             handleChange={handleChange}
                         />
                         <InputField
@@ -135,7 +121,7 @@ const CreateEmployeeComponent = () => {
                             placeholder="Pincode"
                             type="number"
                             handleChange={handleChange}
-                            value={formData.address.pincode}
+                            value={formData.pincode}
                         />
                     </div>
                 </div>
@@ -173,6 +159,4 @@ const CreateEmployeeComponent = () => {
     );
 };
 
-CreateEmployeeComponent.propTypes = {};
-
-export default CreateEmployeeComponent;
+export default UpdateEmployee;

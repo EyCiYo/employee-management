@@ -1,0 +1,17 @@
+.page-align{
+    display: flex;
+    flex-direction: row;
+}
+main{
+    flex: 0 0 85%;
+}
+.container{
+    background-color: #FAFAFA;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+.main-container-style-all{
+    padding: 1rem;
+    width: 100%;
+}

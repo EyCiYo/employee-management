@@ -14,3 +14,6 @@
     background-color: white;
 }
 
+select option[disabled]{
+    display: none;
+}

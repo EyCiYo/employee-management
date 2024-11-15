@@ -2,13 +2,16 @@ import { useState } from "react";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import useLoginValidation from "../hooks/useLoginValidation";
+import { useNavigate } from "react-router-dom";
 
-const Login = (prop) => {
+const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [btnAction, setBtnAction] = useState("Log In");
 
-    const { isLogin } = prop;
+    const navigate = useNavigate();
+
+    // const { isLogin } = prop;
 
     const handleUsernameInput = (e) => {
         setUsername(e.target.value);
@@ -30,11 +33,8 @@ const Login = (prop) => {
         const usersObj = JSON.parse(localStorage.getItem("usersObj")) || {};
         if (usersObj.length !== 0) {
             if (usersObj[username] === password) {
-                alert("Login Success");
-                isLogin(true);
+                navigate("/app/employees");
             }
-        } else {
-            isLogin(false);
         }
     };
 
