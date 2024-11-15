@@ -1,25 +1,60 @@
-import { useParams, Link } from "react-router-dom";
-import "../styles/EmployeeDetails.css";
 import { useEffect, useState } from "react";
-// import { TestUser } from "../utils/constants";
-import DetailItem from "./DetailItem";
+import { useParams, Link } from "react-router-dom";
+
+import Skeleton from "react-loading-skeleton";
 import formatDate from "../utils/DateFormat";
+import "../styles/EmployeeDetails.css";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const EmployeeDetails = () => {
-    const { id } = useParams();
-    // const testUser = TestUser;
-
     const [user, setUser] = useState(null);
+    const { id } = useParams();
 
-    const formatHeading = (camelHeading) => {
-        console.log(camelHeading);
+    const renderUserDetails = () => {
+        return (
+            <>
+                <div className="detail-item">
+                    <span className="detail-heading">Employee Name</span>
+                    <span>{user ? user.name : <Skeleton />}</span>
+                </div>
 
-        const normalCase = camelHeading.replace(/([A-Z])/g, " $1");
-        console.log(normalCase);
+                <div className="detail-item">
+                    <span className="detail-heading">Joining Date</span>
+                    <span>{user ? user.joiningDate : <Skeleton />}</span>
+                </div>
 
-        const result = camelHeading[0].toUpperCase() + normalCase.slice(1);
-        console.log(result);
-        return result;
+                <div className="detail-item">
+                    <span className="detail-heading">Experience</span>
+                    <span>{user ? user.experience : <Skeleton />}</span>
+                </div>
+
+                <div className="detail-item">
+                    <span className="detail-heading">Role</span>
+                    <span>{user ? user.role : <Skeleton />}</span>
+                </div>
+
+                <div className="detail-item">
+                    <span className="detail-heading">Status</span>
+                    <span>{user ? user.status : <Skeleton />}</span>
+                </div>
+
+                <div className="detail-item">
+                    <span className="detail-heading">Department</span>
+                    <span>{user ? user.department : <Skeleton />}</span>
+                </div>
+
+                <div className="detail-item">
+                    <span className="detail-heading">Address</span>
+                    <span>{user ? user.line1 : <Skeleton />}</span>
+                    <span>{user ? user.pincode : <Skeleton />}</span>
+                </div>
+
+                <div className="detail-item">
+                    <span className="detail-heading">Employee ID</span>
+                    <span>{user ? user.id : <Skeleton />}</span>
+                </div>
+            </>
+        );
     };
 
     useEffect(() => {
@@ -30,17 +65,21 @@ const EmployeeDetails = () => {
                     name: res.name,
                     joiningDate: formatDate(res.createdAt),
                     experience: "1 Years",
-                    role: user.role,
+                    role: res.role,
                     status: "Active",
+                    department: res.department.name,
+                    line1: res.address.line1,
+                    pincode: res.address.pincode,
                 };
                 setUser(fetchedUser);
             });
     }, [id]);
+
     return (
         <div className="main-container-style-all">
-            <div className="heading-banner">
+            <div className="detail-heading-banner">
                 <h2>Employee Details</h2>
-                <Link to={`${id}`}>
+                <Link to={`../../update/${id}`}>
                     <div
                         className="create-btn"
                         style={{
@@ -50,9 +89,9 @@ const EmployeeDetails = () => {
                         <div className="circle">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="#10AAC0"
+                                width="20"
+                                height="20"
+                                fill="white"
                                 className="bi bi-pencil"
                                 viewBox="0 0 16 16"
                             >
@@ -63,76 +102,8 @@ const EmployeeDetails = () => {
                     </div>
                 </Link>
             </div>
-            <div
-                style={{
-                    padding: "1rem",
-                    borderRadius: "10px",
-                    background: "white",
-                    boxShadow: "0px 3px 6px #9D9D9D29",
-                }}
-            >
-                <div
-                    style={{
-                        padding: "1rem",
-                        display: "grid",
-                        gridTemplateColumns: "repeat(5,1fr)",
-                        gridAutoColumns: "1fr",
-                        gridAutoRows: "auto",
-                        gap: "2rem",
-                    }}
-                >
-                    {user ? (
-                        Object.entries(user).map(([key, value], index) => (
-                            <DetailItem
-                                heading={formatHeading(key)}
-                                content={value}
-                                key={index}
-                            />
-                        ))
-                    ) : (
-                        <p>Loading....</p>
-                    )}
-                    {/* <div className="detail-item">
-                        <span className="heading">Employee Name</span>
-                        <span>Alexander</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Joining Date</span>
-                        <span>10.12.2024</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Experience</span>
-                        <span>2 Years</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Role</span>
-                        <span>Full Stack</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Status</span>
-                        <span>Probation</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Department</span>
-                        <span>Development</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Address</span>
-                        <span>Alexander House</span>
-                        <span>PIN: 680872</span>
-                    </div>
-
-                    <div className="detail-item">
-                        <span className="heading">Employee ID</span>
-                        <span>{id}</span>
-                    </div> */}
-                </div>
+            <div className="employee-details-container">
+                <div className="details-grid">{renderUserDetails()}</div>
             </div>
         </div>
     );

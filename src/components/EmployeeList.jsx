@@ -1,12 +1,15 @@
 // import { Link } from "react-router-dom";
-import "../styles/EmployeeList.css";
-import DropDown from "./DropDown";
-import { Status } from "../utils/constants";
+
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+
+import DropDown from "./DropDown";
 import formatDate from "../utils/DateFormat";
+import { Status } from "../utils/constants";
+
+import "react-loading-skeleton/dist/skeleton.css";
+import "../styles/EmployeeList.css";
 
 // import { useEffect, useState } from "react";
 const EmployeeList = () => {
@@ -72,11 +75,6 @@ const EmployeeList = () => {
     };
     return (
         <div className="main-container-style-all">
-            {/* {userData && userData.users ? (
-                userData.users.map((user) => listGenerate(user))
-            ) : (
-                <p>Loading....</p>
-            )} */}
             <div className="heading-banner">
                 <div>
                     <h2>Employee List</h2>
