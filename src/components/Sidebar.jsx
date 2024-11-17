@@ -8,10 +8,6 @@ const Sidebar = () => {
                 src="/src/assets/kv logo.png"
                 alt="logo"
                 height="50px"
-                style={{
-                    margin: "0.5rem",
-                    marginLeft: "2rem",
-                }}
             />
             <NavLink
                 to="employees"

@@ -77,7 +77,7 @@ const EmployeeDetails = () => {
 
     return (
         <div className="main-container-style-all">
-            <div className="detail-heading-banner">
+            <div className="heading-banner">
                 <h2>Employee Details</h2>
                 <Link to={`../../update/${id}`}>
                     <div

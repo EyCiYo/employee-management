@@ -59,12 +59,12 @@ export const Status = [
     },
 ];
 
-export const TestUser = {
-    employeeName: "Alexander Ouseph",
-    joiningDate: "28.10.2024",
+export const TestUser = [{
+    name: "Alexander Ouseph",
+    createdAt: "28.10.2024",
     experience: "1 Yrs",
     department: "HR",
     role: "HR",
     status: "active",
-    // address: { line1: "Alex House", pincode: "680684" },
-};
+    address: { line1: "Alex House", pincode: "680684" },
+}];

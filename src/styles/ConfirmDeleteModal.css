@@ -1,0 +1,50 @@
+dialog{
+    margin:auto;
+    padding: 2rem;
+    border: none;
+    border-radius: 3px; 
+}
+button{
+    border: none;
+    background: none;
+    outline: none;
+}
+dialog::backdrop{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.dialog-btns{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.close-btn{
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    cursor: pointer;
+}
+.btn{
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    box-shadow: 0px 3px 6px #9D9D9D29;
+}
+.btn-danger{
+    background-color: var(--kvblue);
+    color: white;
+}
+.btn-secondary{
+    background-color: white;
+    border: 1px solid #63667A;
+}

@@ -1,9 +1,4 @@
-:root{
-    --probation:#F5ECB8;
-    --inactive:#FFBFBF;
-    --active:#D3F4BE;
-    --kvblue:#03AEEE;
-}
+
 a{
     text-decoration: none;
     color: inherit;
@@ -18,7 +13,7 @@ a{
     appearance: none;
     text-align: center;
 } */
-.heading-banner{
+/* .heading-banner{
     padding: 1rem 1.5rem;
     border-radius: 10px;
     background: white;
@@ -27,7 +22,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+} */
 .heading-right{
     display: flex;
     justify-content: space-around;
@@ -126,3 +121,10 @@ a{
     gap:3rem;
 }
 
+.action-buttons > button{
+    border: none;
+    background-color: none;
+    cursor: pointer;
+    font-size: inherit;
+    background: none;
+}
