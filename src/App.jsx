@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
-import Login from "./pages/Login.jsx";
+import Login from "./pages/Login/Login.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import HomeLayout from "./layout/HomeLayout.jsx";
 import CreateEmployeeComponent from "./components/CreateEmployeeComponent.jsx";

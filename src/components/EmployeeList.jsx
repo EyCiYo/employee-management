@@ -7,23 +7,11 @@ import DropDown from "./DropDown";
 import formatDate from "../utils/DateFormat";
 import { Status } from "../utils/constants";
 import ConfirmDelete from "../modals/ConfirmDeleteModal";
-import { loadEmployeeList } from "../stores/action";
 import store from "../stores/store";
+import { loadEmployee } from "../stores/reducer";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "../styles/EmployeeList.css";
-
-// const initialState = { count: 0 };
-// const reducer = (state, action) => {
-//     switch (action.type) {
-//         case "INCREMENT":
-//             return { ...state, count: state.count + 1 };
-//         case "DECREMENT":
-//             return { ...state, count: state.count - 1 };
-//         default:
-//             return state;
-//     }
-// };
 
 const EmployeeList = () => {
     const [statusFilter, setStatusFilter] = useState("");
@@ -33,9 +21,6 @@ const EmployeeList = () => {
     const dispatch = useDispatch();
     const dialogRef = useRef(null);
     const navigate = useNavigate();
-    // console.log(userData);
-
-    // const [state, dispatchFn] = useReducer(reducer, initialState);
 
     useEffect(() => {
         if (store.getState().employee.employeeList.length === 0) {
@@ -44,7 +29,7 @@ const EmployeeList = () => {
                 .then((res) => {
                     console.log(res);
                     //setUserData(res);
-                    dispatch(loadEmployeeList(res));
+                    dispatch(loadEmployee(res));
                 });
         }
 

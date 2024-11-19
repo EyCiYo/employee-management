@@ -1,15 +1,7 @@
-import { ACTION_STATES } from "../utils/constants";
+// import { createAction } from "@reduxjs/toolkit";
+// import { ACTION_STATES } from "../utils/constants";
 
-export const loadEmployeeList = (list) => {
-    return {
-        type: ACTION_STATES.LOAD_LIST,
-        payload: list,
-    };
-};
-
-export const addEmployee = (employee) => {
-    return {
-        type: ACTION_STATES.ADD_EMPLOYEE,
-        payload: employee,
-    };
-};
+// export const loadEmployee = createAction(ACTION_STATES.LOAD_LIST);
+// export const addEmployee = createAction(ACTION_STATES.ADD_EMPLOYEE);
+// export const login = createAction(ACTION_STATES.LOGIN);
+// export const logout = createAction(ACTION_STATES.LOGOUT);

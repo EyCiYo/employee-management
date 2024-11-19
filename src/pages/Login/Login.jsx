@@ -1,7 +1,7 @@
 import { useState } from "react";
-import InputField from "../components/InputField";
-import Button from "../components/Button";
-import useLoginValidation from "../hooks/useLoginValidation";
+import InputField from "../../components/InputField";
+import Button from "../../components/Button";
+import useLoginValidation from "../../hooks/useLoginValidation";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

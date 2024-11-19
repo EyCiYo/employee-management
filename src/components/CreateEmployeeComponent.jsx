@@ -5,7 +5,7 @@ import Button from "../components/Button.jsx";
 import { Departments, Roles, Status } from "../utils/constants.js";
 import DatePicker from "./DatePicker.jsx";
 import { useDispatch } from "react-redux";
-import { addEmployee } from "../stores/action.js";
+import { addEmployee } from "../stores/reducer.js";
 import { useNavigate } from "react-router-dom";
 
 const CreateEmployeeComponent = () => {
