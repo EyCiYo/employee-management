@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "../styles/DropDown.css";
 
 const DropDown = (prop) => {
+    const [selected, setSelected] = useState("");
     return (
         <div className="dropdown">
             {prop.label && (
@@ -8,26 +10,32 @@ const DropDown = (prop) => {
                     {prop.label}
                 </label>
             )}
-            <select
-                name={prop.name}
-                className="dropdown-field"
-                value={prop.selectedValue}
-                onChange={(e) => {
-                    prop.handleChange(e);
-                }}
-                style={prop.style}
-            >
-                {prop.placeholder && (
-                    <option value="" disabled>
-                        {prop.placeholder}
-                    </option>
-                )}
-                {prop.options.map((option) => (
-                    <option value={option.value} key={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
+            <div className="custom-dropdown">
+                <select
+                    name={prop.name}
+                    className={`dropdown-field ${
+                        selected === "" ? "placeholder" : "selected"
+                    }`}
+                    value={prop.selectedValue}
+                    onChange={(e) => {
+                        setSelected(e.target.value);
+                        prop.handleChange(e);
+                    }}
+                    style={prop.style}
+                    id={prop.name}
+                >
+                    {/* {prop.placeholder && (
+                        <option value="" disabled>
+                            {prop.placeholder}
+                        </option>
+                    )} */}
+                    {prop.options.map((option) => (
+                        <option value={option.value} key={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </div>
     );
 };

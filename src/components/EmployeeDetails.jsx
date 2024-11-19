@@ -51,7 +51,7 @@ const EmployeeDetails = () => {
 
                 <div className="detail-item">
                     <span className="detail-heading">Employee ID</span>
-                    <span>{user ? user.id : <Skeleton />}</span>
+                    <span>{user ? id : <Skeleton />}</span>
                 </div>
             </>
         );

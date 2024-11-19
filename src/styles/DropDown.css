@@ -5,6 +5,9 @@
     width: 100%;
     font-weight: 500;
 }
+.custom-dropdown{
+    position: relative;
+}
 .dropdown-field{
     padding: 0.5rem;
     width: 100%;
@@ -13,7 +16,31 @@
     border: 1px solid #d6dbdf;
     background-color: white;
 }
-
-select option[disabled]{
+.custom-dropdown select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 30px; 
+}
+.custom-dropdown::after {
+    content: '▼';/* Custom icon */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Allows clicks on the select element */
+    font-size: 12px;
+}
+select {
+    color: #808080; /* Initial gray color */
+}
+  
+select.selected {
+    color: black; /* Black color when an option is selected */
+}
+  
+select.placeholder option:disabled {
+    color: #808080; /* Placeholder color */
     display: none;
 }
+

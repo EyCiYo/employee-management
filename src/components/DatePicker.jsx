@@ -41,10 +41,14 @@ const DatePicker = (prop) => {
                     name={prop.name}
                     className="hidden-date"
                     value={date}
-                    onChange={handleDateChange}
+                    onChange={(e) => {
+                        handleDateChange(e);
+                        prop.handleChange(e);
+                    }}
                     ref={dateInputRef}
                     max={today}
                     min="2000-01-01"
+                    id={prop.name}
                 />
                 <div className="placeholder" ref={placeholdeRef}>
                     {date.length > 0 ? date : "Select Date"}

@@ -101,6 +101,13 @@ a{
     align-items: center;
     justify-content: start;
     font-size: 16px;
+    cursor: pointer;
+    z-index: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.table-row:hover{
+    scale: 1.02;
 }
 .status{
     background-color: var(--probation);
@@ -127,4 +134,5 @@ a{
     cursor: pointer;
     font-size: inherit;
     background: none;
+    z-index: 10;
 }
