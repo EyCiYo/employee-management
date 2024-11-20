@@ -1,36 +1,33 @@
-import { useState } from "react";
-import InputField from "../components/InputField.jsx";
-import DropDown from "../components/DropDown.jsx";
-import Button from "../components/Button.jsx";
-import { Departments, Roles, Status } from "../utils/constants.js";
-import DatePicker from "./DatePicker.jsx";
-import { useDispatch } from "react-redux";
-import { addEmployee } from "../stores/reducer.js";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useCreateEmployeeMutation } from "./api.js";
+import InputField from "../InputField/InputField.jsx";
+import DropDown from "../DropDown/DropDown.jsx";
+import Button from "../Button/Button.jsx";
+import { Departments, Roles, Status } from "../../utils/constants.js";
 
 const CreateEmployeeComponent = () => {
     const initialFormData = {
         name: "",
-        createdAt: "",
-        experience: "",
-        department: { name: "" },
+        email: "",
+        password: "",
+        department: 0,
         role: "",
-        status: "",
         address: { line1: "", pincode: "" },
-        id: "",
     };
     const [formData, setFormData] = useState(initialFormData);
-    const dispatch = useDispatch();
+    const [addUser, createResponse] = useCreateEmployeeMutation();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (createResponse.isSuccess) navigate("../employees");
+    }, [createResponse, navigate]);
 
     const secondaryBtnStyles = {
         background: "white",
         color: "black",
         border: "1px solid black",
         width: "200px",
-    };
-    const genrateID = (max, min) => {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
     const handleChange = (e) => {
@@ -48,27 +45,20 @@ const CreateEmployeeComponent = () => {
         } else if (name === "department") {
             setFormData({
                 ...formData,
-                department: {
-                    ...formData.department,
-                    name: value,
-                },
+                department: parseInt(value),
             });
-        } else if (name === "createdAt") {
-            const date = new Date(value);
-            setFormData({ ...formData, [name]: date.toISOString() });
         } else {
             setFormData({
                 ...formData,
                 [name]: value,
-                id: genrateID(11, 1000000),
             });
         }
     };
     console.log(formData);
 
-    const handleSubmit = () => {
-        dispatch(addEmployee(formData));
-        navigate("../employees");
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await addUser(formData);
     };
 
     return (
@@ -86,18 +76,21 @@ const CreateEmployeeComponent = () => {
                         handleChange={handleChange}
                         type="text"
                     />
-                    <DatePicker
-                        name="createdAt"
-                        label="Joining Date"
+                    <InputField
+                        name="email"
+                        label="Email ID"
+                        placeholder="Email ID"
+                        value={formData.email}
                         handleChange={handleChange}
+                        type="email"
                     />
                     <InputField
-                        name="experience"
-                        label="Experience(Yrs)"
-                        placeholder="Experience"
-                        value={formData.experience}
+                        name="password"
+                        label="Password"
+                        placeholder="Password"
+                        value={formData.password}
                         handleChange={handleChange}
-                        type="number"
+                        type="password"
                     />
                     <DropDown
                         name="department"
@@ -124,7 +117,7 @@ const CreateEmployeeComponent = () => {
                         type="select"
                         options={Status}
                         selectedValue={formData.status}
-                        handleChange={handleChange}
+                        handleChange={() => {}}
                     />
                     <div
                         style={{

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "../styles/DatePicker.css";
+import "./DatePicker.css";
 
 const DatePicker = (prop) => {
     const [date, setDate] = useState("");

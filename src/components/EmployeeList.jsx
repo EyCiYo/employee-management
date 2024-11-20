@@ -1,53 +1,48 @@
-import { useState, useEffect, useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 
-import DropDown from "./DropDown";
+import DropDown from "./DropDown/DropDown";
 import formatDate from "../utils/DateFormat";
 import { Status } from "../utils/constants";
-import ConfirmDelete from "../modals/ConfirmDeleteModal";
-import store from "../stores/store";
-import { loadEmployee } from "../stores/reducer";
+import ConfirmDelete from "../modals/ConfirmDelete/ConfirmDeleteModal";
 
 import "react-loading-skeleton/dist/skeleton.css";
 import "../styles/EmployeeList.css";
+import { useGetAllEmployeesQuery } from "./api";
+import { useDeleteEmployeeMutation } from "../modals/ConfirmDelete/api";
 
 const EmployeeList = () => {
     const [statusFilter, setStatusFilter] = useState("");
-    // const [userData, setUserData] = useState(null);
-    const statusBackground = useRef("var(--active)");
-    const employeeList = useSelector((state) => state.employee.employeeList);
-    const dispatch = useDispatch();
+    const [deleteId, setDeleteId] = useState(0);
+    const { data } = useGetAllEmployeesQuery();
+    const [deleteEmployee, deleteResponse] = useDeleteEmployeeMutation();
     const dialogRef = useRef(null);
+
+    let statusBackground = "";
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (store.getState().employee.employeeList.length === 0) {
-            fetch("http://localhost:3000/employee")
-                .then((res) => res.json())
-                .then((res) => {
-                    console.log(res);
-                    //setUserData(res);
-                    dispatch(loadEmployee(res));
-                });
+        if (deleteResponse.isSuccess) {
+            dialogRef.current.close();
         }
+    }, [deleteResponse]);
 
-        // setUserData(TestUser);
-    }, [dispatch]);
-
-    useEffect(() => {
-        console.log(store.getState());
-    });
+    const handleDelete = async () => {
+        const delResp = await deleteEmployee(deleteId);
+    };
+    const handleCancel = () => {
+        dialogRef.current.close();
+    };
 
     const renderTableItem = (user) => {
         let status = "Active";
         if (!user.deletedAt) {
             status = "Active";
-            statusBackground.current = "var(--active)";
+            statusBackground = "var(--active)";
         } else {
             status = "Inactive";
-            statusBackground.current = "var(--inactive)";
+            statusBackground = "var(--inactive)";
         }
         if (statusFilter && status.toLowerCase() !== statusFilter) {
             return;
@@ -68,7 +63,7 @@ const EmployeeList = () => {
                     <div
                         className="status"
                         style={{
-                            backgroundColor: statusBackground.current,
+                            backgroundColor: statusBackground,
                         }}
                     >
                         {status}
@@ -79,6 +74,7 @@ const EmployeeList = () => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
+                            setDeleteId(user.id);
                             dialogRef.current.showModal();
                         }}
                     >
@@ -116,7 +112,11 @@ const EmployeeList = () => {
     };
     return (
         <>
-            <ConfirmDelete dialogRef={dialogRef} />
+            <ConfirmDelete
+                handleDelete={handleDelete}
+                handleCancel={handleCancel}
+                modalRef={dialogRef}
+            />
             <div className="main-container-style-all">
                 <div className="heading-banner">
                     <div>
@@ -178,8 +178,8 @@ const EmployeeList = () => {
                             <div>Experience</div>
                             <div>Action</div>
                         </div>
-                        {employeeList ? (
-                            employeeList.map((user) => renderTableItem(user))
+                        {data ? (
+                            data.map((user) => renderTableItem(user))
                         ) : (
                             <Skeleton
                                 count={9}

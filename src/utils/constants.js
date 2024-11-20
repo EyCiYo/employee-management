@@ -5,19 +5,19 @@ export const Roles = [
     },
     {
         label: "UI Engineer",
-        value: "FE",
+        value: "UI",
     },
     {
-        label: "Full Stack",
-        value: "BE",
+        label: "Developer",
+        value: "Developer",
     },
     {
         label: "Testing",
-        value: "QA",
+        value: "Tester",
     },
     {
-        label: "DevOps",
-        value: "DO",
+        label: "UX Engineer",
+        value: "UX",
     },
     {
         label: "HR - Executive",
@@ -28,27 +28,27 @@ export const Roles = [
 export const Departments = [
     {
         label: "Choose department",
-        value: "",
+        value: 0,
     },
     {
         label: "Human Resources",
-        value: "HR",
+        value: 1,
     },
     {
         label: "Development",
-        value: "DEV",
+        value: 2,
     },
     {
         label: "Design",
-        value: "UI",
+        value: 3,
     },
     {
         label: "Quality Assurance",
-        value: "QA",
+        value: 4,
     },
     {
         label: "Research & Development",
-        value: "RD",
+        value: 5,
     },
 ];
 

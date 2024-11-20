@@ -1,14 +1,32 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useGetEmployeeByIdQuery } from "../api";
 
 import Skeleton from "react-loading-skeleton";
-import formatDate from "../utils/DateFormat";
-import "../styles/EmployeeDetails.css";
+import formatDate from "../../utils/DateFormat";
+import "./EmployeeDetails.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
 const EmployeeDetails = () => {
     const [user, setUser] = useState(null);
     const { id } = useParams();
+    const { data } = useGetEmployeeByIdQuery(parseInt(id));
+
+    useEffect(() => {
+        if (data) {
+            const fetchedUser = {
+                name: data.name,
+                joiningDate: formatDate(data.createdAt),
+                experience: "1 Years",
+                role: data.role,
+                status: data.deletedAt ? "Inactive" : "Active",
+                department: data.department.name,
+                line1: data.address.line1,
+                pincode: data.address.pincode,
+            };
+            setUser(fetchedUser);
+        }
+    }, [data]);
 
     const renderUserDetails = () => {
         return (
@@ -44,7 +62,7 @@ const EmployeeDetails = () => {
                 </div>
 
                 <div className="detail-item">
-                    <span className="detail-heading">Address</span>
+                    <span className="detail-heading">Adddatas</span>
                     <span>{user ? user.line1 : <Skeleton />}</span>
                     <span>{user ? user.pincode : <Skeleton />}</span>
                 </div>
@@ -56,25 +74,6 @@ const EmployeeDetails = () => {
             </>
         );
     };
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/employee/` + id)
-            .then((res) => res.json())
-            .then((res) => {
-                const fetchedUser = {
-                    name: res.name,
-                    joiningDate: formatDate(res.createdAt),
-                    experience: "1 Years",
-                    role: res.role,
-                    status: "Active",
-                    department: res.department.name,
-                    line1: res.address.line1,
-                    pincode: res.address.pincode,
-                };
-                setUser(fetchedUser);
-            });
-    }, [id]);
-
     return (
         <div className="main-container-style-all">
             <div className="heading-banner">

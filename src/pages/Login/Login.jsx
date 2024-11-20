@@ -1,18 +1,24 @@
-import { useState } from "react";
-import InputField from "../../components/InputField";
-import Button from "../../components/Button";
+import { useEffect, useState } from "react";
+import { useLoginMutation } from "./api";
 import useLoginValidation from "../../hooks/useLoginValidation";
+import InputField from "../../components/InputField/InputField";
+import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [btnAction, setBtnAction] = useState("Log In");
+    const [userLogin, loginResponse] = useLoginMutation();
 
     const navigate = useNavigate();
-
-    // const { isLogin } = prop;
-
+    useEffect(() => {
+        console.log("In useEffect: ", loginResponse);
+        if (loginResponse.isSuccess) {
+            localStorage.setItem("token", loginResponse.data.data);
+            navigate("app/employees");
+        }
+    }, [loginResponse, navigate]);
     const handleUsernameInput = (e) => {
         setUsername(e.target.value);
     };
@@ -29,13 +35,12 @@ const Login = () => {
     // console.log("In Login:" + username);
     // console.log("In Login:" + password);
 
-    const onLogin = () => {
-        const usersObj = JSON.parse(localStorage.getItem("usersObj")) || {};
-        if (usersObj.length !== 0) {
-            if (usersObj[username] === password) {
-                navigate("/app/employees");
-            }
-        }
+    const onLogin = async () => {
+        const loginresponse = await userLogin({
+            email: username,
+            password: password,
+        });
+        console.log(loginresponse);
     };
 
     const onSignUp = () => {

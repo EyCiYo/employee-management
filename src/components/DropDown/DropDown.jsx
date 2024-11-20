@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/DropDown.css";
+import "./DropDown.css";
 
 const DropDown = (prop) => {
     const [selected, setSelected] = useState("");

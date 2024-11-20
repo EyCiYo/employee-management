@@ -1,4 +1,4 @@
-import "../styles/InputField.css";
+import "./InputField.css";
 
 const InputField = (prop) => {
     return (

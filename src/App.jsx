@@ -3,10 +3,10 @@ import { Provider } from "react-redux";
 import Login from "./pages/Login/Login.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import HomeLayout from "./layout/HomeLayout.jsx";
-import CreateEmployeeComponent from "./components/CreateEmployeeComponent.jsx";
+import CreateEmployeeComponent from "./components/CreateEmployee/CreateEmployeeComponent.jsx";
 import EmployeeList from "./components/EmployeeList.jsx";
-import EmployeeDetails from "./components/EmployeeDetails.jsx";
-import UpdateEmployee from "./components/UpdateEmployee.jsx";
+import EmployeeDetails from "./components/EmployeeDetails/EmployeeDetails.jsx";
+import UpdateEmployee from "./components/UpdateEmployee/UpdateEmployee.jsx";
 import store from "./stores/store.js";
 
 const App = () => {

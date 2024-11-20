@@ -1,15 +1,9 @@
-import "../styles/ConfirmDeleteModal.css";
+import { useState } from "react";
+import "../../styles/ConfirmDeleteModal.css";
 const ConfirmDelete = (prop) => {
-    const { dialogRef } = prop;
-    const handleDelete = () => {
-        alert("Employee Deleted");
-        dialogRef.current.close();
-    };
-    const handleCancel = () => {
-        dialogRef.current.close();
-    };
+    const { handleDelete, handleCancel } = prop;
     return (
-        <dialog ref={dialogRef}>
+        <dialog ref={prop.modalRef}>
             <div className="dialog-container">
                 <button className="close-btn" onClick={handleCancel}>
                     <div>

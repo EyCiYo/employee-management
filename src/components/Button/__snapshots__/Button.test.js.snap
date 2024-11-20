@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button test cases if snapshot is matching 1`] = `
+<body>
+  <div>
+    <button
+      class="login-btn"
+      data-testid="button-test-id"
+      style="color: white;"
+      type="button"
+    >
+      button
+    </button>
+  </div>
+</body>
+`;
